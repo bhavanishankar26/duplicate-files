@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>WHEATHER APP TASK</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body> 
+  
+
+
+<div class= "heading">
+ <b> <label for="fname"><font color="orange" font size="6" >Weather in your city</label></b></font>
+ <input type= "text" class="inputvalue" id="fname" placeholder="Enter a city" >
+ <button id="search" onclick="myFunction()">search</button></div>
+
+ 
+ <div class = "weather"></div>
+
+
+ 
+ <div id = "heading">
+ <div class="flex-container">
+  <div class="flex-item">
+   <section>
+  <section class="child">
+    
+    
+   
+  
+    
+<script>
+  'use strict';
+  
+ function myFunction() {
+  var a=document.getElementById("fname").value
+  alert(a);
+  
+
+  const btn = document.querySelector('.btn-weather');
+  const weathercontainer = document.querySelector('.weather');
+ const request = new XMLHttpRequest();
+    request.open('GET',`http://api.openweathermap.org/data/2.5/forecast?q=${a}&appid=1635890035cbba097fd5c26c8ea672a1`);
+request.send();
+
+  
+request.addEventListener('load', function() {
+    const data = JSON.parse(this.responseText);
+    
+    
+    for(let i = 0 ; i <=40 ; i=i+8){
+    console.log(data.list[i]);
+    
+    
+   
+    
+   var target =  document.getElementById("heading");
+    target.innerHTML +=
+    `<center><table border="1" cellpadding="2" cellspacing="2"></center>
+  <th align="center" bgcolor="orange" colspan="2">${data.list[i].dt_txt}</th>  
+   <tr align="center" bgcolor="grey"><td colspan="2">Temperature</td></tr>   
+    <tr align="center" bgcolor="grey"><td>Min</td><td>Max</td></tr>
+    <tr align="center" bgcolor="grey"><td>${data.list[i].main.temp_min}</td><td>${data.list[i].main.temp_max}</td></tr>
+    <tr align="center" ><td>Pressure</td><td>${data.list[i].main.pressure}</td></tr>
+    <tr align="center"><td>humidity</td><td>${data.list[i].main.humidity}</td></tr>
+    </table></border><br></center>
+   
+   
+     `;
+  }
+  })
+  console.clear()
+} 
+
+   
+ 
+</script>
+</div>
+</section>
+</section>
+
+</div>
+</div>
+</body>
+</html>
